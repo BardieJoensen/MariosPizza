@@ -42,8 +42,8 @@ public class Menucard {
     }
 
     /// *IMPORTANT* This function hinges on ArrayList being ordered as elements were added
-    public Pizza getPizzaById(int id) {
-        return pizzas.get(id - 1);
+    public Pizza getPizzaByIndx(int index) {
+        return pizzas.get(index - 1);
     }
 
     public String toString() {
