@@ -1,7 +1,7 @@
-import java.util.List;
+import java.util.ArrayList;
 
-public class PizzaList {
-    private static final List<Pizza> pizzas = List.of(
+public class Menucard {
+    private static final ArrayList<String> pizzas = new PizzaList(
             new Pizza(1, "Margherita", 75),
             new Pizza(2, "Pepperoni", 80),
             new Pizza(3, "Hawaiian", 85),
@@ -33,7 +33,7 @@ public class PizzaList {
             new Pizza(29, "Cacciatore", 95),
             new Pizza(30, "Pastrami & Pickles", 90)
     );
-    public static List<Pizza> getPizzas() {
+    public static ArrayList<Pizza> getPizzas() {
         return pizzas;
     }
 
