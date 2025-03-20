@@ -89,7 +89,12 @@ public class Menu {
         this.populateMenu();
 
     }
-
+    public void setNewPizzaPrice(int index, double newPizzaPrice) {
+        Pizza pizza = this.menuItems.get(index);
+        Pizza pizzaWithUpdatedPrice = new Pizza(pizza.name, newPizzaPrice );
+        this.menuItems.set(index,pizzaWithUpdatedPrice);
+        System.out.println("Pizza"+pizzaWithUpdatedPrice+" er sat til ny pris: "+ newPizzaPrice+"DKK");
+    }
     public void displayMenuItems(){
         if(menuItems.isEmpty()){
             System.out.println("No menu items found");
