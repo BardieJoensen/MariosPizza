@@ -1,61 +1,84 @@
 package src.Menu;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class Menu {
-
-    HashMap<java.lang.Integer,HashMap<String,Object>> menuItems;
-
+    ArrayList<Pizza> menuItems;
 
     private void populateMenu(){
         double[] prices = {
-                1
-                ,2
-                ,3
-                ,4
-                ,5
-                ,6
-                ,7
-                ,8
-                ,9
-                ,10};
+        75.00,
+        80.00,
+        85.00,
+        85.00,
+        90.00,
+        95.00,
+        90.00,
+        80.00,
+        90.00,
+        95.00,
+        90.00,
+        85.00,
+        95.00,
+        90.00,
+        85.00,
+        95.00,
+        100.00,
+        95.00,
+        85.00,
+        90.00,
+        80.00,
+        90.00,
+        95.00,
+        100.00,
+        95.00,
+        90.00,
+        85.00,
+        90.00,
+        95.00,
+        90.00,
+        };
 
         String[] names = {
-                "Span",
-                "Kanlam",
-                "Gembucket",
-                "Cookley",
-                "Tres-Zap",
-                "It",
-                "Tresom",
-                "Solarbreeze",
-                "Latlux",
-                "It",
+        "Margherita",
+        "Pepperoni",
+        "Hawaii",
+        "Vegetariana",
+        "Capricciosa",
+        "Quattro Stagioni",
+        "Diavola",
+        "Funghi",
+        "Prosciutto e Funghi",
+        "BBQ Chicken",
+        "Calzone",
+        "Tonno",
+        "Carbonara",
+        "Bolognese",
+        "Siciliana",
+        "Gorgonzola e Pere",
+        "Frutti di Mare",
+        "Rucola e Parma",
+        "Bacon & Champignon",
+        "Pesto e Mozzarella",
+        "Fresca",
+        "Mexicana",
+        "Prawn & Garlic",
+        "Tartufo",
+        "Buffalo Chicken",
+        "Rustica",
+        "Vegetarisk Deluxe",
+        "Parmigiana",
+        "Cacciatore",
+        "Pastrami & Pickles",
         };
-        String[] descriptions = {
-                "Mulberry",
-                "BISACODYL",
-                "TERBINAFINE HYDROCHLORIDE",
-                "Diphenhydramine Hydrochloride",
-                "retapamulin",
-                "POISON TREATMENT ADSORBENT SUSPENSION",
-                "rosiglitazone maleate and glimepiride",
-                "norgestimate and ethinyl estradiol",
-                "Flaxseed",
-                "Miconazole Nitrate",
-        };
-        for (int i = 0; i < prices.length; i++) {
 
+        for (int i = 0; i < prices.length; i++) {
             double price = prices[i];
             String name = names[i];
-            String description = descriptions[i];
 
-            HashMap<String,Object> menuItem = new HashMap<>();
-            menuItem.put("price", price);
-            menuItem.put("name",name);
-            menuItem.put("description",description);
+            this.menuItems.set(i, new Pizza(name, price));
 
-            this.menuItems.put(i+1, menuItem);
         }
 
     }
@@ -63,7 +86,7 @@ public class Menu {
 
     /// CONSTRUCTOR
     public Menu() {
-        this.menuItems = new HashMap<>();
+        this.menuItems = new ArrayList<Pizza>();
         this.populateMenu();
 
     }
