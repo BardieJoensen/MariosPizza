@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-public class Menucard {
+public class MenuCard {
     ArrayList<Pizza> pizzas;
 
-    public Menucard() {
+    public MenuCard() {
         this.pizzas = new ArrayList<>();
         pizzas.add(new Pizza("Margherita", 75));
         pizzas.add(new Pizza("Pepperoni", 80));

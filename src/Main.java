@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        Menucard menucard = new Menucard();
+        MenuCard menuCard = new MenuCard();
 
-        System.out.println(menucard);
+        System.out.println(menuCard);
     }
 }
