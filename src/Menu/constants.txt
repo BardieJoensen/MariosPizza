@@ -1,0 +1,30 @@
+0 Margherita – 75 DKK
+1 Pepperoni – 80 DKK
+2 Hawaii – 85 DKK
+3 Vegetariana – 85 DKK
+4 Capricciosa – 90 DKK
+5 Quattro Stagioni – 95 DKK
+6 Diavola – 90 DKK
+7 Funghi – 80 DKK
+8 Prosciutto e Funghi – 90 DKK
+9 BBQ Chicken – 95 DKK
+10 Calzone – 90 DKK
+11 Tonno – 85 DKK
+12 Carbonara – 95 DKK
+13 Bolognese – 90 DKK
+14 Siciliana – 85 DKK
+15 Gorgonzola e Pere – 95 DKK
+16 Frutti di Mare – 100 DKK
+17 Rucola e Parma – 95 DKK
+18 Bacon & Champignon – 85 DKK
+19 Pesto e Mozzarella – 90 DKK
+20 Fresca – 80 DKK
+21 Mexicana – 90 DKK
+22 Prawn & Garlic – 95 DKK
+23 Tartufo – 100 DKK
+24 Buffalo Chicken – 95 DKK
+25 Rustica – 90 DKK
+26 Vegetarisk Deluxe – 85 DKK
+27 Parmigiana – 90 DKK
+28 Cacciatore – 95 DKK
+29 Pastrami & Pickles – 90 DKK
