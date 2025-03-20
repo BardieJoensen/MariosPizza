@@ -76,9 +76,8 @@ public class Menu {
         for (int i = 0; i < prices.length; i++) {
             double price = prices[i];
             String name = names[i];
-
-            this.menuItems.set(i, new Pizza(name, price));
-
+            Pizza pizza = new Pizza(name, price);
+            this.menuItems.add(pizza);
         }
 
     }
@@ -86,7 +85,7 @@ public class Menu {
 
     /// CONSTRUCTOR
     public Menu() {
-        this.menuItems = new ArrayList<Pizza>();
+        this.menuItems = new ArrayList<>();
         this.populateMenu();
 
     }
