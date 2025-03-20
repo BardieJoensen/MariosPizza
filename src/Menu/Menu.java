@@ -1,7 +1,5 @@
 package src.Menu;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public class Menu {
     ArrayList<Pizza> menuItems;
