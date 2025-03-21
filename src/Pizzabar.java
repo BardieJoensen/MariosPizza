@@ -14,8 +14,7 @@ public class Pizzabar {
                 """);
 
         System.out.println("Enter number:");
-        int choice = sc.nextInt();
-        sc.nextLine();
+        int choice = getIntInRange(1, 2);
 
         switch (choice) {
             case 1 -> System.out.println(menuCard);
@@ -27,7 +26,7 @@ public class Pizzabar {
         }
     }
 
-    public void takeOrder(){
+    public void takeOrder() {
         boolean finished = false;
 
         Order order = new Order();
@@ -35,35 +34,103 @@ public class Pizzabar {
         System.out.println(menuCard);
 
 
-        while(!finished){
+        while (!finished) {
             System.out.println("Pick Pizza (enter number)");
             int choice = sc.nextInt();
             sc.nextLine();
-            Pizza pizza = menuCard.getPizzas().get(choice-1);
+            Pizza pizza = menuCard.getPizzas().get(choice - 1);
 
             System.out.println("Enter amount:");
             int amount = sc.nextInt();
             sc.nextLine();
 
-            Orderline orderline = new Orderline(pizza,amount);
+            Orderline orderline = new Orderline(pizza, amount);
             order.addOrderline(orderline);
 
             System.out.println("add more? [y/n]");
             String strChoice = sc.nextLine();
-            if (strChoice.equalsIgnoreCase("n")) finished=true;
+            if (strChoice.equalsIgnoreCase("n")) finished = true;
         }
 
+
         System.out.println("Enter time of pick-up: [ttmm]");
-        int time = sc.nextInt();
-        sc.nextLine();
+        int time = 0;
+
+        time = getValidTime();
         order.setTimeOfPickup(time);
+
 
         orderlist.addOrder(order);
     }
 
-    public void runProgram(){
-        while(true){
+    public void runProgram() {
+        while (true) {
             mainMenu();
         }
+    }
+
+    //Helper-method: get int
+    public int getValidInt() {
+        int result;
+
+        while (true) {
+            if (sc.hasNextInt()) { // Checks if user entered a valid int
+                result = sc.nextInt(); // Reads the int
+                break;
+            }
+
+            System.out.println("Invalid input. Press number");
+            sc.nextLine(); // Consume invalid input
+        }
+        sc.nextLine(); // Consume newline
+
+        return result;
+    }
+
+    //Helper-method: get int within specified range
+    public int getIntInRange(int min, int max) {
+        int result;
+
+        while (true) {
+            if (sc.hasNextInt()) { // Checks if user entered an int
+                result = sc.nextInt(); // Reads the int
+                if (result >= min && result <= max) break; // Validates whether int is in range
+            }
+
+            System.out.println("Invalid input. Press number between " + min + " and " + max + ".");
+            sc.nextLine(); // Consume invalid input
+        }
+        sc.nextLine(); // Consume newline
+
+        return result;
+    }
+
+    public boolean isValidTime(int time) {
+        String pickupTime = Integer.toString(time);
+        if (pickupTime.length() != 4) {
+            return false;
+        } else if (time < 0 || time > 2359) { //
+            return false;
+        } else if (pickupTime.charAt(2) > '5') {// checks if the 10-minute mark is valid being
+            return false;
+        }
+        return true;
+    }
+
+    public int getValidTime() {
+        int result;
+
+        while (true) {
+            if (sc.hasNextInt()) { // Checks if user entered a valid int
+                result = sc.nextInt(); // Reads the int
+                if (isValidTime(result)) break;
+            }
+
+            System.out.println("Invalid input. Press number");
+            sc.nextLine(); // Consume invalid input
+        }
+        sc.nextLine(); // Consume newline
+
+        return result;
     }
 }

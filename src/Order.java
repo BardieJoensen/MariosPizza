@@ -44,24 +44,9 @@ public class Order {
     }
 
     public void setTimeOfPickup(int updateTimeOfPickup) {
-        if(isValidTime(updateTimeOfPickup)){
-            timeOfPickup = updateTimeOfPickup;
-            return;
-        }
-        System.out.println("Invalid time of pickup");
+        timeOfPickup = updateTimeOfPickup;
     }
 
-    public boolean isValidTime(int timeOfPickup){
-        String pickupTime = Integer.toString(timeOfPickup);
-        if(pickupTime.length() != 4){
-            return  false;
-        }else if(timeOfPickup < 0 || timeOfPickup > 2359){
-            return false;
-        }else if(pickupTime.charAt(2) > '5'){
-            return false;
-        }
-        return true;
-    }
 
     public double getTotal() {
         return total;

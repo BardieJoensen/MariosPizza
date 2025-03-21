@@ -25,14 +25,6 @@ public class Orderlist {
         orders.remove(order);
     }
 
-//    public void assOrder(Order order){
-//        for(int i = orders.size()-1; i>0; i--){ //iterate back starting at last index of arr
-//            if(orders.get(i).getTimeOfPickup() > order.getTimeOfPickup()){ // if ToP at index is later than ToP of new order
-//                orders.add(i+1, order); // place new order at index to the right of order at index
-//                break;
-//            }
-//        }
-//    }
 
     @Override
     public String toString() {
@@ -43,3 +35,13 @@ public class Orderlist {
         return result;
     }
 }
+
+
+//    public void assOrder(Order order){
+//        for(int i = orders.size()-1; i>0; i--){ //iterate back starting at last index of arr
+//            if(orders.get(i).getTimeOfPickup() > order.getTimeOfPickup()){ // if ToP at index is later than ToP of new order
+//                orders.add(i+1, order); // place new order at index to the right of order at index
+//                break;
+//            }
+//        }
+//    }
