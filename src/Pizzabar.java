@@ -36,12 +36,12 @@ public class Pizzabar {
 
         while (!finished) {
             System.out.println("Pick Pizza (enter number)");
-            int choice = sc.nextInt();
-            sc.nextLine();
+            int choice = getIntInRange(1, menuCard.getPizzas().size());
+
             Pizza pizza = menuCard.getPizzas().get(choice - 1);
 
             System.out.println("Enter amount:");
-            int amount = sc.nextInt();
+            int amount = getPositiveInt();
             sc.nextLine();
 
             Orderline orderline = new Orderline(pizza, amount);
@@ -54,9 +54,8 @@ public class Pizzabar {
 
 
         System.out.println("Enter time of pick-up: [ttmm]");
-        int time = 0;
 
-        time = getValidTime();
+        int time = getValidTime();
         order.setTimeOfPickup(time);
 
 
@@ -70,13 +69,13 @@ public class Pizzabar {
     }
 
     //Helper-method: get int
-    public int getValidInt() {
+    public int getPositiveInt() {
         int result;
 
         while (true) {
             if (sc.hasNextInt()) { // Checks if user entered a valid int
                 result = sc.nextInt(); // Reads the int
-                break;
+                if(result>0) break;
             }
 
             System.out.println("Invalid input. Press number");
@@ -123,10 +122,9 @@ public class Pizzabar {
         while (true) {
             if (sc.hasNextInt()) { // Checks if user entered a valid int
                 result = sc.nextInt(); // Reads the int
-                if (isValidTime(result)) break;
+                if(isValidTime(result)) break;
             }
-
-            System.out.println("Invalid input. Press number");
+            System.out.println("Invalid input. Enter time in format [ttmm]");
             sc.nextLine(); // Consume invalid input
         }
         sc.nextLine(); // Consume newline
