@@ -18,7 +18,7 @@ public class Orderlist {
     }
 
     public void removeOrder() {
-        orders.remove(orders.size() - 1); //fjerner sidste element
+        orders.remove(0); //fjerner sidste element
     }
 
     public void removeOrder(Order order) {
