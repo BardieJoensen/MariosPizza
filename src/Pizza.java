@@ -15,10 +15,12 @@ public class Pizza {
         return price;
     }
 
-    public void setPrice(double price) { this.price = price; }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     @Override
     public String toString() {
-        return name  + ", " + price + " kr.";
+        return name + ", " + price + " kr.";
     }
 }
