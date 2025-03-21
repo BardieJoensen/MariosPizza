@@ -5,7 +5,7 @@ public class Order {
     private ArrayList<Orderline> orderlines;
     private int timeOfPickup; //Collections.sort(timeOfPickup) //Military time babyyyyyyyyyyyy <3
     private double total;
-    private String status; //Igangværende //Klar //Betalt //afhentning -> arrayList
+    private String status; //Igangværende //Klar //Betalt //afhentet -> arrayList
     private Customer customer;
 
 
@@ -44,7 +44,23 @@ public class Order {
     }
 
     public void setTimeOfPickup(int updateTimeOfPickup) {
-        timeOfPickup = updateTimeOfPickup;
+        if(isValidTime(updateTimeOfPickup)){
+            timeOfPickup = updateTimeOfPickup;
+            return;
+        }
+        System.out.println("Invalid time of pickup");
+    }
+
+    public boolean isValidTime(int timeOfPickup){
+        String pickupTime = Integer.toString(timeOfPickup);
+        if(pickupTime.length() != 4){
+            return  false;
+        }else if(timeOfPickup < 0 || timeOfPickup > 2359){
+            return false;
+        }else if(pickupTime.charAt(2) > '5'){
+            return false;
+        }
+        return true;
     }
 
     public double getTotal() {
