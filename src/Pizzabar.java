@@ -12,6 +12,7 @@ public class Pizzabar {
         int choice = sc.nextInt();
         sc.nextLine();
 
+
         switch (choice) {
             case 1 -> System.out.println(menuCard);
             default -> {
