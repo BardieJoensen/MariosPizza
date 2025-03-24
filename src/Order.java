@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 public class Order {
     //TODO: Opret ordre og afhentningstidspunkt
+    private static int orderCount = 1;
+
+    private int orderId;
     private ArrayList<Orderline> orderlines;
     private int timeOfPickup; //Collections.sort(timeOfPickup) //Military time babyyyyyyyyyyyy <3
     private double total;
@@ -13,6 +16,8 @@ public class Order {
         this.orderlines = new ArrayList<>();
         this.timeOfPickup = 0;
         this.total = 0;
+        this.orderId = orderCount;
+        orderCount++;
     }
 
     public Order(String status) {
@@ -50,6 +55,10 @@ public class Order {
 
     public double getTotal() {
         return total;
+    }
+
+    public int getOrderId() {
+        return orderId;
     }
 
     public void calculateTotal() {

@@ -40,7 +40,7 @@ public class Orderlist {
 
         String result = "";
         for (Order item : orders) {
-            result = result + "Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
+            result = result + String.format("#%03d",item.getOrderId()) + " Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
         }
         return result;
     }
