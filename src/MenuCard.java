@@ -6,7 +6,7 @@ public class MenuCard {
     public MenuCard() {
         this.pizzas = new ArrayList<>();
         // this function populates ´this.pizzas´ arrayList
-        this.populateMenuCard();
+        populateMenuCard();
 
     }
     /// Helper function that separates concerns of constructor and reduces code repetition (DRY.)
@@ -42,38 +42,14 @@ public class MenuCard {
                 "Vegetarisk Deluxe",
                 "Parmigiana",
                 "Cacciatore",
-                "Pastrami & Pickles",
+                "Pastrami & Pickles"
         };
-        int[] prices = {75
-                , 80
-                , 85
-                , 85
-                , 90
-                , 95
-                , 90
-                , 80
-                , 90
-                , 95
-                , 90
-                , 85
-                , 95
-                , 90
-                , 85
-                , 95
-                , 100
-                , 95
-                , 85
-                , 90
-                , 80
-                , 90
-                , 95
-                , 100
-                , 95
-                , 90
-                , 85
-                , 90
-                , 95
-                , 90};
+        int[] prices = {75, 80, 85, 85, 90,
+                        95, 90, 80, 90, 95,
+                        90, 85, 95, 90, 85,
+                        95, 100, 95, 85, 90,
+                        80, 90, 95, 100, 95,
+                        90, 85, 90, 95, 90};
 
         for (int i = 0; i < names.length; i++) {
             String name = names[i];
