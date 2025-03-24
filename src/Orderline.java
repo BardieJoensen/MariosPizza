@@ -14,8 +14,12 @@ public class Orderline {
         return total;
     }
 
+    public int getAmount(){
+        return amount;
+    }
+
     @Override
     public String toString() {
-        return pizza.getName() + ", x" + amount + " " + total + " kr";
+        return amount + "x " + pizza.getName() + ", " + total + " kr";
     }
 }

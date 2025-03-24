@@ -25,12 +25,23 @@ public class Orderlist {
         orders.remove(order);
     }
 
+    public String printNextOrder(){
+        System.out.println("NEXT ORDER:");
+        return orders.get(0).toString();
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
 
     @Override
     public String toString() {
+        System.out.println("ACTIVE ORDERS:");
+
         String result = "";
+
         for (Order item : orders) {
-            result = result + item.getTimeOfPickup() + "\n";
+            result = result + "Pickup: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
         }
         return result;
     }

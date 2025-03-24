@@ -6,10 +6,11 @@ public class Pizzabar {
     Orderlist orderlist = new Orderlist();
 
     public void mainMenu() {
+        if(!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
         System.out.println(orderlist);
 
         System.out.println("""
-                1. Show menu card
+                1. Show menu card/edit prices
                 2. Take Order
                 """);
 
@@ -81,7 +82,7 @@ public class Pizzabar {
             System.out.println("Invalid input. Press number");
             sc.nextLine(); // Consume invalid input
         }
-        sc.nextLine(); // Consume newline
+        //sc.nextLine(); // Consume newline
 
         return result;
     }

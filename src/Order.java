@@ -63,6 +63,14 @@ public class Order {
         orderlines.add(ol);
     }
 
+    public int getAmount(){
+        int amount = 0;
+        for (Orderline orderline : orderlines){
+            amount += orderline.getAmount();
+        }
+        return amount;
+    }
+
     @Override
     public String toString() {
         String result = "";
