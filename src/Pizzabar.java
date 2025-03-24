@@ -1,11 +1,22 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Pizzabar {
+    Random random = new Random();
     Scanner sc = new Scanner(System.in);
     MenuCard menuCard = new MenuCard();
     Orderlist orderlist = new Orderlist();
 
+    public void runProgram() {
+        addTestOrders(orderlist, 10);
+
+        while (true) {
+            mainMenu();
+        }
+    }
+
     public void mainMenu() {
+
         if(!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
         System.out.println(orderlist);
 
@@ -61,12 +72,6 @@ public class Pizzabar {
 
 
         orderlist.addOrder(order);
-    }
-
-    public void runProgram() {
-        while (true) {
-            mainMenu();
-        }
     }
 
     ///Helper-method: get int
@@ -131,5 +136,23 @@ public class Pizzabar {
         sc.nextLine(); // Consume newline
 
         return result;
+    }
+
+    public void addTestOrders(Orderlist list, int orderAmount){
+        for(int i = 0; i<orderAmount; i++) {
+            Order order = new Order();
+            int lines = random.nextInt(3)+1;
+            for(int j = 0; j<lines; j++) {
+                int choice = random.nextInt(30)+1;
+                int amount = random.nextInt(10)+1;
+                order.addOrderline(new Orderline(menuCard.getPizzas().get(choice - 1), amount));
+            }
+            int time = random.nextInt(2359);
+            while(!isValidTime(time)){
+                time = random.nextInt(2359);
+            }
+            order.setTimeOfPickup(time);
+            list.addOrder(order);
+        }
     }
 }
