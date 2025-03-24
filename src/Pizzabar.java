@@ -1,29 +1,59 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/// Main software handling logic class. Deals with user input, executes menu actions, displays and stores relevant vars.
 public class Pizzabar {
     Scanner sc = new Scanner(System.in);
     MenuCard menuCard = new MenuCard();
     Orderlist orderlist = new Orderlist();
 
+    /// This function displays and handles the main menu as well as the input actions taken by the user.
     public void mainMenu() {
-        System.out.println(orderlist);
+        while (true) {
+            // TODO: *VIGTIG* Mangler relevant kontekst, hvordan ser output ud og hvordan hænger det sammen med andre commandline outputs.
+            System.out.println(orderlist);
 
-        System.out.println("""
-                1. Show menu card
-                2. Take Order
-                """);
+            // Supported Main menu actions to be taken by user
+            System.out.println("""
+                    Press 1 - Show Menu
+                    Press 2 - Add Order
+                    
+                    Press 5 - Exit Program
+                    """);
 
-        System.out.println("Enter number:");
-        int choice = getIntInRange(1, 2);
+            System.out.println("Enter number below:");
 
-        switch (choice) {
-            case 1 -> System.out.println(menuCard);
-            case 2 -> takeOrder();
-            default -> {
-                System.out.println("Invalid input...");
-                mainMenu();
+            // Valideringsfunktion virker unødig
+            // int choice = getIntInRange(1, 2);
+
+            // Ensures input is integer, handling error otherwise
+            try {
+                int menuActionInputToken = sc.nextInt();
+
+                // Handling user input
+                switch (menuActionInputToken) {
+                    // Show menu items
+                    case 1 -> System.out.println(menuCard);
+                    // Handle "takeOrder" action
+                    case 2 -> takeOrder();
+                    // Exits program
+                    case 5 -> {
+                        System.out.println("\nExiting Program. Good Bye!");
+                        // Breaks outer while loop by returning
+                        return;
+                    }
+                    default -> {
+                        System.out.println("Action not supported - valid options are 1 or 2");
+                    }
+
+                }
+            }
+            // Error handling, if input is not integer
+            catch (InputMismatchException e) {
+                System.out.println("Invalid input - must be number...");
             }
         }
+
     }
 
     public void takeOrder() {
@@ -61,21 +91,23 @@ public class Pizzabar {
 
         orderlist.addOrder(order);
     }
-
+    /// Namesake - main class method
     public void runProgram() {
-        while (true) {
-            mainMenu();
-        }
+
+        // BREAKING CHANGES
+//        while (true) {
+        mainMenu();
+//        }
     }
 
-    ///Helper-method: get int
+    /// Helper-method: get int
     public int getPositiveInt() {
         int result;
 
         while (true) {
             if (sc.hasNextInt()) { // Checks if user entered a valid int
                 result = sc.nextInt(); // Reads the int
-                if(result>0) break;
+                if (result > 0) break;
             }
 
             System.out.println("Invalid input. Press number");
@@ -122,7 +154,7 @@ public class Pizzabar {
         while (true) {
             if (sc.hasNextInt()) { // Checks if user entered a valid int
                 result = sc.nextInt(); // Reads the int
-                if(isValidTime(result)) break;
+                if (isValidTime(result)) break;
             }
             System.out.println("Invalid input. Enter time in format [ttmm]");
             sc.nextLine(); // Consume invalid input
