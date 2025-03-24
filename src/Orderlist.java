@@ -39,9 +39,8 @@ public class Orderlist {
         System.out.println("ACTIVE ORDERS:");
 
         String result = "";
-
         for (Order item : orders) {
-            result = result + "Pickup: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
+            result = result + "Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
         }
         return result;
     }
