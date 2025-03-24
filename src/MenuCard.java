@@ -5,36 +5,80 @@ public class MenuCard {
 
     public MenuCard() {
         this.pizzas = new ArrayList<>();
-        pizzas.add(new Pizza("Margherita", 75));
-        pizzas.add(new Pizza("Pepperoni", 80));
-        pizzas.add(new Pizza("Hawaiian", 85));
-        pizzas.add(new Pizza("Vegetariana", 85));
-        pizzas.add(new Pizza("Capricciosa", 90));
-        pizzas.add(new Pizza("Quattro Stagioni", 95));
-        pizzas.add(new Pizza("Diavola", 90));
-        pizzas.add(new Pizza("Funghi", 80));
-        pizzas.add(new Pizza("Prosciutto e Funghi", 90));
-        pizzas.add(new Pizza("BBQ Chicken", 95));
-        pizzas.add(new Pizza("Calzone", 90));
-        pizzas.add(new Pizza("Tonno", 85));
-        pizzas.add(new Pizza("Carbonara", 95));
-        pizzas.add(new Pizza("Bolognese", 90));
-        pizzas.add(new Pizza("Siciliana", 85));
-        pizzas.add(new Pizza("Gorgonzola e Pere", 95));
-        pizzas.add(new Pizza("Frutti di Mare", 100));
-        pizzas.add(new Pizza("Rucola e Parma", 95));
-        pizzas.add(new Pizza("Bacon & Champignon", 85));
-        pizzas.add(new Pizza("Pesto e Mozzarella", 90));
-        pizzas.add(new Pizza("Fresca", 80));
-        pizzas.add(new Pizza("Mexicana", 90));
-        pizzas.add(new Pizza("Prawn & Garlic", 95));
-        pizzas.add(new Pizza("Tartufo", 100));
-        pizzas.add(new Pizza("Buffalo Chicken", 95));
-        pizzas.add(new Pizza("Rustica", 90));
-        pizzas.add(new Pizza("Vegetarisk Deluxe", 85));
-        pizzas.add(new Pizza("Parmigiana", 90));
-        pizzas.add(new Pizza("Cacciatore", 95));
-        pizzas.add(new Pizza("Pastrami & Pickles", 90));
+        this.populateMenuCard();
+
+    }
+
+    private void populateMenuCard() {
+        String[] names = {
+                "Margherita",
+                "Pepperoni",
+                "Hawaiian",
+                "Vegetariana",
+                "Capricciosa",
+                "Quattro Stagioni",
+                "Diavola",
+                "Funghi",
+                "Prosciutto e Funghi",
+                "BBQ Chicken",
+                "Calzone",
+                "Tonno",
+                "Carbonara",
+                "Bolognese",
+                "Siciliana",
+                "Gorgonzola e Pere",
+                "Frutti di Mare",
+                "Rucola e Parma",
+                "Bacon & Champignon",
+                "Pesto e Mozzarella",
+                "Fresca",
+                "Mexicana",
+                "Prawn & Garlic",
+                "Tartufo",
+                "Buffalo Chicken",
+                "Rustica",
+                "Vegetarisk Deluxe",
+                "Parmigiana",
+                "Cacciatore",
+                "Pastrami & Pickles",
+        };
+        int[] prices = {75
+                , 80
+                , 85
+                , 85
+                , 90
+                , 95
+                , 90
+                , 80
+                , 90
+                , 95
+                , 90
+                , 85
+                , 95
+                , 90
+                , 85
+                , 95
+                , 10
+                , 95
+                , 85
+                , 90
+                , 80
+                , 90
+                , 95
+                , 10
+                , 95
+                , 90
+                , 85
+                , 90
+                , 95
+                , 90};
+
+        for (int i = 0; i < names.length; i++) {
+            String name = names[i];
+            int price = prices[i];
+            Pizza p = new Pizza(name, price);
+            pizzas.add(p);
+        }
     }
 
     public ArrayList<Pizza> getPizzas() {

@@ -68,7 +68,7 @@ public class Pizzabar {
         }
     }
 
-    //Helper-method: get int
+    ///Helper-method: get int
     public int getPositiveInt() {
         int result;
 
