@@ -51,7 +51,7 @@ public class Pizzabar {
             // Error handling, if input is not integer
             catch (InputMismatchException e) {
                 System.out.println("Invalid input - must be number...");
-                sc.nextLine();
+                sc.next();
             }
         }
 
