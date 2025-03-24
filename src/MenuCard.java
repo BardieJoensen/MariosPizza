@@ -70,6 +70,8 @@ public class MenuCard {
     }
 
     public String toString() {
+        System.out.println("MENU CARD:");
+
         int id = 1;
         String str = "";
 
