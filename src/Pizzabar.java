@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -57,6 +58,7 @@ public class Pizzabar {
 
     }
 
+    /// Handles order logging
     public void takeOrder() {
         boolean finished = false;
 
@@ -64,12 +66,16 @@ public class Pizzabar {
 
         System.out.println(menuCard);
 
+        // ´getPizzas´ only needs to be called once on ´takeOrder´ call, as the value does not change in the while loop
+        ArrayList<Pizza> pizzasOnMenu = menuCard.getPizzas();
+        // ´size´ only needs to be called once on ´takeOrder´ call, as the value does not change in the while loop
+        int pizzasMenuItemCount = pizzasOnMenu.size();
 
         while (!finished) {
             System.out.println("Pick Pizza (enter number)");
-            int choice = getIntInRange(1, menuCard.getPizzas().size());
+            int choice = getIntInRange(1, pizzasMenuItemCount);
 
-            Pizza pizza = menuCard.getPizzas().get(choice - 1);
+            Pizza pizza = pizzasOnMenu.get(choice - 1);
 
             System.out.println("Enter amount:");
             int amount = getPositiveInt();
