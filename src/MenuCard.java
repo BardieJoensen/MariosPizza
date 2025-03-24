@@ -5,10 +5,12 @@ public class MenuCard {
 
     public MenuCard() {
         this.pizzas = new ArrayList<>();
+        // this function populates ´this.pizzas´ arrayList
         this.populateMenuCard();
 
     }
-
+    /// Helper function that separates concerns of constructor and reduces code repetition (DRY.)
+    /// To achieve "DRY" code, we only type code that is unique.
     private void populateMenuCard() {
         String[] names = {
                 "Margherita",
@@ -58,14 +60,14 @@ public class MenuCard {
                 , 90
                 , 85
                 , 95
-                , 10
+                , 100
                 , 95
                 , 85
                 , 90
                 , 80
                 , 90
                 , 95
-                , 10
+                , 100
                 , 95
                 , 90
                 , 85
@@ -76,7 +78,9 @@ public class MenuCard {
         for (int i = 0; i < names.length; i++) {
             String name = names[i];
             int price = prices[i];
+            // Reduction of 30x repetition of class definition
             Pizza p = new Pizza(name, price);
+            // added to class arrayList property
             pizzas.add(p);
         }
     }
