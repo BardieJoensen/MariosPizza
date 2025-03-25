@@ -28,7 +28,7 @@ public class Orderlist {
 
     public String printNextOrder(){
         System.out.println("NEXT ORDER:");
-        return orders.get(0).toString();
+        return orders.getFirst().toString();
     }
 
     public ArrayList<Order> getOrders() {
@@ -56,14 +56,17 @@ public class Orderlist {
 
     public void statistic(MenuCard menuCard){
         ArrayList<Pizza> pizzas = menuCard.getPizzas();
-        int amount = 0;
+        int amount;
+        Pizza pizza;
+        Order order;
+        Orderline orderline;
 
         for(int i = 0; i<pizzas.size(); i++){
-            Pizza pizza = pizzas.get(i);
+            pizza = pizzas.get(i);
             for(int j= 0; i<orders.size(); j++){
-                Order order = orders.get(j);
+                order = orders.get(j);
                 for(int k = 0; k<order.getOrderlines().size(); k++) {
-                    Orderline orderline = order.getOrderlines().get(k);
+                    orderline = order.getOrderlines().get(k);
                     if(orderline.getPizza() == pizza){
                         amount = orderline.getAmount();
                         pizza.setPopularity(amount);

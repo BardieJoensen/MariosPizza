@@ -65,10 +65,6 @@ public class Order {
         return orderId;
     }
 
-    public void calculateTotal() {
-
-    }
-
     public void addOrderline(Orderline ol) {
         orderlines.add(ol);
     }

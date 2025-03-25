@@ -65,10 +65,6 @@ public class MenuCard {
         return pizzas;
     }
 
-    public Pizza getPizzaByIndx(int index) {
-        return pizzas.get(index - 1);
-    }
-
     public String toString() {
         System.out.println("MENU CARD:");
 

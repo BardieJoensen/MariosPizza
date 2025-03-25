@@ -44,9 +44,7 @@ public class Pizzabar {
                         System.out.println("Exiting program - Good Bye!");
                         return;
                     }
-                    default -> {
-                        System.out.println("Invalid input...");
-                    }
+                    default -> System.out.println("Invalid input...");
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input... must be a number");
