@@ -46,9 +46,9 @@ public class Pizzabar {
                     }
                     default -> System.out.println("Invalid input...");
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid input... must be a number");
-                sc.next();
+            } catch (InputMismatchException error) {
+                System.out.println("Something went very wrong");
+                sc.nextLine();
             }
         }
     }
@@ -87,6 +87,77 @@ public class Pizzabar {
 
 
         orderlist.addOrder(order);
+    }
+
+    public void removeOrders(){
+        System.out.println("""
+                What would you like to remove?
+                1. First order in line.
+                2. Specific order.
+                """);
+
+        try{
+            int token = sc.nextInt();
+
+            switch (token){
+                case 1 -> orderHistory.addOrder(orderlist.removeOrder());
+                case 2 -> {
+                    System.out.println("Which order number would you like to remove? Use integers.");
+                    int index = getIntInRange(1, orderlist.getOrders().size());
+                    orderHistory.addOrder(orderlist.removeOrder(index));
+                }
+                default -> System.out.println("Invalid input, redo removal selection.");
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input redo removal selection.");
+        }
+    }
+
+    public void showHistory() {
+        while (true) {
+            System.out.println("""
+                1. Show turnover
+                2. Show popularity of pizza
+                3. Show order history
+                4. Back to main menu
+                """);
+            int choice = getIntInRange(1, 2);
+            switch (choice) {
+                case 1 -> System.out.println(orderHistory.getTurnover() + " kr");
+                case 2 -> {
+                    orderHistory.statistic(menuCard);
+                    menuCard.printPopularity();
+                }
+                case 3 -> System.out.println("ORDER HISTORY: \n" + orderHistory);
+                case 4 -> {
+                    System.out.println("Going back to main menu");
+                    return;
+                }
+                default -> System.out.println("Not a valid input");
+            }
+        }
+    }
+
+    public void addTestOrders(Orderlist list, int orderAmount){
+        for(int i = 0; i<orderAmount; i++) {
+            Order order = new Order();
+
+            int lines = random.nextInt(3)+1;
+
+            for(int j = 0; j<lines; j++) {
+                int choice = random.nextInt(30)+1;
+                int amount = random.nextInt(10)+1;
+                order.addOrderline(new Orderline(menuCard.getPizzas().get(choice - 1), amount));
+            }
+
+            int time = random.nextInt(2359);
+
+            while(!isValidTime(time)){
+                time = random.nextInt(2359);
+            }
+            order.setTimeOfPickup(time);
+            list.addOrder(order);
+        }
     }
 
     /// Helper-method: get int
@@ -151,69 +222,5 @@ public class Pizzabar {
         sc.nextLine(); // Consume newline
 
         return result;
-    }
-
-    public void removeOrders(){
-        int token = 0;
-        System.out.println("""
-                What would you like to remove?
-                1. First order in line.
-                2. Specific order.
-                """);
-
-        try{
-            token = sc.nextInt();
-
-            switch (token){
-                case 1 -> orderHistory.addOrder(orderlist.removeOrder());
-                case 2 -> {
-                    System.out.println("Which order number would you like to remove? Use integers.");
-                    int index = getIntInRange(1, orderlist.getOrders().size());
-                    orderHistory.addOrder(orderlist.removeOrder(index));
-                }
-                default -> System.out.println("Invalid input, redo removal selection.");
-            }
-        }catch (InputMismatchException e){
-            System.out.println("Invalid input redo removal selection.");
-        }
-    }
-
-    public void showHistory(){
-        System.out.println("ORDER HISTORY: \n"+ orderHistory);
-        System.out.println("""
-                1. Show turnover
-                2. Show popularity of pizzas(hopefully)
-                """);
-        int choice = getIntInRange(1,3);
-        switch (choice){
-            case 1 -> System.out.println(orderHistory.getTurnover() + " kr");
-            case 2 -> {
-                orderHistory.statistic(menuCard);
-                System.out.println(menuCard);
-            }
-            default -> System.out.println("Not a valid input");
-        }
-    }
-
-    public void addTestOrders(Orderlist list, int orderAmount){
-        for(int i = 0; i<orderAmount; i++) {
-            Order order = new Order();
-
-            int lines = random.nextInt(3)+1;
-
-            for(int j = 0; j<lines; j++) {
-                int choice = random.nextInt(30)+1;
-                int amount = random.nextInt(10)+1;
-                order.addOrderline(new Orderline(menuCard.getPizzas().get(choice - 1), amount));
-            }
-
-            int time = random.nextInt(2359);
-
-            while(!isValidTime(time)){
-                time = random.nextInt(2359);
-            }
-            order.setTimeOfPickup(time);
-            list.addOrder(order);
-        }
     }
 }

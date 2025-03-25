@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class MenuCard {
     ArrayList<Pizza> pizzas;
@@ -77,5 +78,26 @@ public class MenuCard {
         }
 
         return str;
+    }
+
+    public void printPopularity(){
+        System.out.println("POPULARITY OF PIZZAS:");
+
+        ArrayList<Pizza> popularPizzas = new ArrayList<>();
+        for (Pizza pizza : pizzas) {
+            if (pizza.getPopularity() > 0) {
+                popularPizzas.add(pizza);
+            }
+        }
+
+        popularPizzas.sort(Comparator.comparing(Pizza::getPopularity));
+
+        Pizza pizza;
+        for (int i = popularPizzas.size()-1; i >= 0; i--){
+            pizza = popularPizzas.get(i);
+            System.out.println(pizza.getName() + " has sold " + pizza.getPopularity());
+
+        }
+        System.out.println();
     }
 }

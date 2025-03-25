@@ -48,7 +48,8 @@ public class Orderlist {
         String result = "";
         int i = 1;
         for (Order item : orders) {
-            result = result + i + ". " + String.format("#%03d",item.getOrderId()) + " Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
+            result = result + i + ". " + String.format("#%03d",item.getOrderId()) +
+                    " Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
             i++;
         }
         return result;
@@ -61,11 +62,11 @@ public class Orderlist {
         Order order;
         Orderline orderline;
 
-        for(int i = 0; i<pizzas.size(); i++){
+        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
             pizza = pizzas.get(i);
-            for(int j= 0; i<orders.size(); j++){
+            for(int j= 0; j<orders.size(); j++){ //iterate through orders in orderlist
                 order = orders.get(j);
-                for(int k = 0; k<order.getOrderlines().size(); k++) {
+                for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through 
                     orderline = order.getOrderlines().get(k);
                     if(orderline.getPizza() == pizza){
                         amount = orderline.getAmount();
@@ -75,9 +76,4 @@ public class Orderlist {
             }
         }
     }
-
-
 }
-
-
-
