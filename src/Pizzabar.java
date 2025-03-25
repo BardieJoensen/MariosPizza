@@ -1,37 +1,48 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class Pizzabar {
-    Random random = new Random();
     Scanner sc = new Scanner(System.in);
     MenuCard menuCard = new MenuCard();
     Orderlist orderlist = new Orderlist();
 
     public void runProgram() {
-        addTestOrders(orderlist, 10);
-            mainMenu();
+
+        mainMenu();
     }
 
     public void mainMenu() {
 
-        if(!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
+        if (!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
         System.out.println(orderlist);
 
-        System.out.println("""
+        while (true) {
+            System.out.println("""
                 1. Show menu card/edit prices
                 2. Take Order
                 """);
 
-        System.out.println("Enter number:");
-        int choice = getIntInRange(1, 2);
+            System.out.println("Enter number:");
 
-        switch (choice) {
-            case 1 -> System.out.println(menuCard);
-            case 2 -> takeOrder();
-            default -> {
-                System.out.println("Invalid input...");
-                mainMenu();
+            try {
+                int menuActionInputToken =  sc.nextInt();
+                sc.nextLine();
+                switch (menuActionInputToken) {
+                    case 1 -> System.out.println(menuCard);
+                    case 2 -> takeOrder();
+                    case 5 -> {
+                        System.out.println("Exiting program - Good Bye!");
+                        return;
+                    }
+                    default -> {
+                        System.out.println("Invalid input...");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input... must be a number");
+                sc.next();
             }
+
+
         }
     }
 
@@ -71,14 +82,14 @@ public class Pizzabar {
         orderlist.addOrder(order);
     }
 
-    ///Helper-method: get int
+    /// Helper-method: get int
     public int getPositiveInt() {
         int result;
 
         while (true) {
             if (sc.hasNextInt()) { // Checks if user entered a valid int
                 result = sc.nextInt(); // Reads the int
-                if(result>0) break;
+                if (result > 0) break;
             }
 
             System.out.println("Invalid input. Press number");
@@ -125,7 +136,7 @@ public class Pizzabar {
         while (true) {
             if (sc.hasNextInt()) { // Checks if user entered a valid int
                 result = sc.nextInt(); // Reads the int
-                if(isValidTime(result)) break;
+                if (isValidTime(result)) break;
             }
             System.out.println("Invalid input. Enter time in format [ttmm]");
             sc.nextLine(); // Consume invalid input
@@ -135,21 +146,4 @@ public class Pizzabar {
         return result;
     }
 
-    public void addTestOrders(Orderlist list, int orderAmount){
-        for(int i = 0; i<orderAmount; i++) {
-            Order order = new Order();
-            int lines = random.nextInt(3)+1;
-            for(int j = 0; j<lines; j++) {
-                int choice = random.nextInt(30)+1;
-                int amount = random.nextInt(10)+1;
-                order.addOrderline(new Orderline(menuCard.getPizzas().get(choice - 1), amount));
-            }
-            int time = random.nextInt(2359);
-            while(!isValidTime(time)){
-                time = random.nextInt(2359);
-            }
-            order.setTimeOfPickup(time);
-            list.addOrder(order);
-        }
-    }
 }
