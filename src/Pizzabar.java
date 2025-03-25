@@ -10,8 +10,8 @@ public class Pizzabar {
     Orderlist orderHistory = new Orderlist();
 
     public void runProgram() {
-        addTestOrders(orderlist, 5);
-        addTestOrders(orderHistory, 5);
+        addTestOrders(orderlist, 10);
+        //addTestOrders(orderHistory, 5);
         mainMenu();
     }
 
@@ -27,7 +27,6 @@ public class Pizzabar {
                 3. Remove Order
                 4. Show order history
                 5. Exit program
-                6. 
                 """);
 
             System.out.println("Enter number:");
@@ -96,22 +95,27 @@ public class Pizzabar {
                 2. Specific order.
                 """);
 
+
         try{
+            Order order = null;
             int token = sc.nextInt();
             switch (token){
-                case 1 -> orderHistory.addOrder(orderlist.removeOrder());
+                case 1 -> order = orderlist.removeOrder();
                 case 2 -> {
                     System.out.println("Which order number would you like to remove? Use integers.");
                     int index = getIntInRange(1, orderlist.getOrders().size());
-                    orderHistory.addOrder(orderlist.removeOrder(index));
+                    order = orderlist.removeOrder(index);
                 }
                 default -> System.out.println("Invalid input, redo removal selection.");
             }
-
+            orderHistory.addOrder(order);
+            orderHistory.statistic(menuCard,order);
 
         }catch (InputMismatchException e){
             System.out.println("Invalid input redo removal selection.");
         }
+
+
     }
 
     public void showHistory() {
@@ -125,10 +129,7 @@ public class Pizzabar {
             int choice = getIntInRange(1, 4);
             switch (choice) {
                 case 1 -> System.out.println(orderHistory.getTurnover() + " kr");
-                case 2 -> {
-                    orderHistory.statistic(menuCard);
-                    menuCard.printPopularity();
-                }
+                case 2 -> menuCard.printPopularity();
                 case 3 -> System.out.println("ORDER HISTORY: \n" + orderHistory);
                 case 4 -> {
                     System.out.println("Going back to main menu");

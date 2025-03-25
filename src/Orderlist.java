@@ -9,7 +9,7 @@ public class Orderlist {
     }
 
     public void addOrder(Order order) {
-        orders.add(order);
+        if(order!=null) orders.add(order);
         sortPizza();
     }
 
@@ -55,23 +55,41 @@ public class Orderlist {
         return result;
     }
 
-    public void statistic(MenuCard menuCard){
+//    public void statistic(MenuCard menuCard){
+//        ArrayList<Pizza> pizzas = menuCard.getPizzas();
+//        int amount;
+//        Pizza pizza;
+//        Order order;
+//        Orderline orderline;
+//
+//        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
+//            pizza = pizzas.get(i);
+//            for(int j= 0; j<orders.size(); j++){ //iterate through orders in orderlist
+//                order = orders.get(j);
+//                for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through orderlines in order
+//                    orderline = order.getOrderlines().get(k);
+//                    if(orderline.getPizza() == pizza){
+//                        amount = orderline.getAmount();
+//                        pizza.setPopularity(amount);
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    public void statistic(MenuCard menuCard, Order order){
         ArrayList<Pizza> pizzas = menuCard.getPizzas();
         int amount;
         Pizza pizza;
-        Order order;
         Orderline orderline;
 
         for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
             pizza = pizzas.get(i);
-            for(int j= 0; j<orders.size(); j++){ //iterate through orders in orderlist
-                order = orders.get(j);
-                for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through orderlines in order
-                    orderline = order.getOrderlines().get(k);
-                    if(orderline.getPizza() == pizza){
-                        amount = orderline.getAmount();
-                        pizza.setPopularity(amount);
-                    }
+            for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through orderlines in order
+                orderline = order.getOrderlines().get(k);
+                if(orderline.getPizza() == pizza){
+                    amount = orderline.getAmount();
+                    pizza.setPopularity(amount);
                 }
             }
         }
