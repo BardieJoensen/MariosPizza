@@ -66,7 +66,7 @@ public class Orderlist {
             pizza = pizzas.get(i);
             for(int j= 0; j<orders.size(); j++){ //iterate through orders in orderlist
                 order = orders.get(j);
-                for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through 
+                for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through orderlines in order
                     orderline = order.getOrderlines().get(k);
                     if(orderline.getPizza() == pizza){
                         amount = orderline.getAmount();

@@ -98,7 +98,6 @@ public class Pizzabar {
 
         try{
             int token = sc.nextInt();
-
             switch (token){
                 case 1 -> orderHistory.addOrder(orderlist.removeOrder());
                 case 2 -> {
@@ -108,6 +107,8 @@ public class Pizzabar {
                 }
                 default -> System.out.println("Invalid input, redo removal selection.");
             }
+
+
         }catch (InputMismatchException e){
             System.out.println("Invalid input redo removal selection.");
         }
@@ -121,7 +122,7 @@ public class Pizzabar {
                 3. Show order history
                 4. Back to main menu
                 """);
-            int choice = getIntInRange(1, 2);
+            int choice = getIntInRange(1, 4);
             switch (choice) {
                 case 1 -> System.out.println(orderHistory.getTurnover() + " kr");
                 case 2 -> {
