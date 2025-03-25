@@ -72,6 +72,10 @@ public class Order {
         orderlines.add(ol);
     }
 
+    public ArrayList<Orderline> getOrderlines(){
+        return orderlines;
+    }
+
     public int getAmount(){
         int amount = 0;
         for (Orderline orderline : orderlines){

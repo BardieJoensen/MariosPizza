@@ -11,6 +11,7 @@ public class Pizzabar {
 
     public void runProgram() {
         addTestOrders(orderlist, 5);
+        addTestOrders(orderHistory, 5);
         mainMenu();
     }
 
@@ -18,14 +19,15 @@ public class Pizzabar {
 
         while (true) {
             if (!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
-            System.out.println(orderlist);
+            System.out.println("ACTIVE ORDERs: \n" + orderlist);
 
             System.out.println("""
                 1. Show menu card/edit prices
                 2. Take Order
                 3. Remove Order
-                
+                4. Show order history
                 5. Exit program
+                6. 
                 """);
 
             System.out.println("Enter number:");
@@ -37,6 +39,7 @@ public class Pizzabar {
                     case 1 -> System.out.println(menuCard);
                     case 2 -> takeOrder();
                     case 3 -> removeOrders();
+                    case 4 -> showHistory();
                     case 5 -> {
                         System.out.println("Exiting program - Good Bye!");
                         return;
@@ -166,16 +169,26 @@ public class Pizzabar {
             token = sc.nextInt();
 
             switch (token){
-                case 1 -> orderlist.removeOrder();
+                case 1 -> orderHistory.addOrder(orderlist.removeOrder());
                 case 2 -> {
                     System.out.println("Which order number would you like to remove? Use integers.");
                     int index = getIntInRange(1, orderlist.getOrders().size());
-                    orderlist.removeOrder(index);
+                    orderHistory.addOrder(orderlist.removeOrder(index));
                 }
                 default -> System.out.println("Invalid input, redo removal selection.");
             }
         }catch (InputMismatchException e){
             System.out.println("Invalid input redo removal selection.");
+        }
+    }
+
+    public void showHistory(){
+        System.out.println("ORDER HISTORY: \n"+ orderHistory);
+        int choice = getIntInRange(1,2);
+        switch (choice){
+            case 1 -> System.out.println(orderHistory.getTurnover() + " kr");
+            //case 2 ->
+            default -> System.out.println("Not a valid input");
         }
     }
 

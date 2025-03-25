@@ -18,6 +18,10 @@ public class Orderline {
         return amount;
     }
 
+    public void setPopularity(Pizza pizza, int amount){
+        pizza.setPopularity(amount);
+    }
+
     @Override
     public String toString() {
         return amount + "x " + pizza.getName() + ", " + total + " kr";

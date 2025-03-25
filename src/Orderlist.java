@@ -17,13 +17,14 @@ public class Orderlist {
         orders.sort(Comparator.comparing(Order::getTimeOfPickup));
     }
 
-    public void removeOrder() {
-        orders.remove(0); //removes first element
+    public Order removeOrder() {
+        return orders.removeFirst(); //removes first element
     }
 
     public Order removeOrder(int index) {
         return orders.remove(index-1);
     }
+
 
     public String printNextOrder(){
         System.out.println("NEXT ORDER:");
@@ -34,24 +35,44 @@ public class Orderlist {
         return orders;
     }
 
+    public double getTurnover(){
+        double sum = 0;
+        for (Order order : orders){
+            sum += order.getTotal();
+        }
+        return  sum;
+    }
+
     @Override
     public String toString() {
-        System.out.println("ACTIVE ORDERS:");
-
         String result = "";
+        int i = 1;
         for (Order item : orders) {
-            result = result + String.format("#%03d",item.getOrderId()) + " Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
+            result = result + i + ". " + String.format("#%03d",item.getOrderId()) + " Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
+            i++;
         }
         return result;
     }
+
+    public void statistic(MenuCard menuCard){
+        ArrayList<Pizza> pizzas = menuCard.getPizzas();
+        int amount = 0;
+
+        for(int i = 0; i<pizzas.size(); i++){
+            Pizza pizza = pizzas.get(i);
+            for(int j= 0; i<orders.size(); j++){
+                Order order = orders.get(j);
+                for(int k = 0; k<order.getOrderlines().size(); k++) {
+                    if()
+                    amount = order.getOrderlines().get(k).getAmount();
+                    pizza.setPopularity(amount);
+                }
+            }
+        }
+    }
+
+
 }
 
 
-//    public void assOrder(Order order){
-//        for(int i = orders.size()-1; i>0; i--){ //iterate back starting at last index of arr
-//            if(orders.get(i).getTimeOfPickup() > order.getTimeOfPickup()){ // if ToP at index is later than ToP of new order
-//                orders.add(i+1, order); // place new order at index to the right of order at index
-//                break;
-//            }
-//        }
-//    }
+
