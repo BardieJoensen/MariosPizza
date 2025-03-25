@@ -9,10 +9,7 @@ public class Pizzabar {
 
     public void runProgram() {
         addTestOrders(orderlist, 10);
-
-        while (true) {
             mainMenu();
-        }
     }
 
     public void mainMenu() {
