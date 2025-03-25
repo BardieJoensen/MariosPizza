@@ -10,8 +10,12 @@ public class Orderline {
         this.total = pizza.getPrice() * this.amount;
     }
 
-    public double getPrice() {
+    public double getTotal() {
         return total;
+    }
+
+    public Pizza getPizza(){
+        return pizza;
     }
 
     public int getAmount(){

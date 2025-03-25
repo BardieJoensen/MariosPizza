@@ -52,8 +52,6 @@ public class Pizzabar {
                 System.out.println("Invalid input... must be a number");
                 sc.next();
             }
-
-
         }
     }
 
@@ -106,7 +104,7 @@ public class Pizzabar {
             System.out.println("Invalid input. Press number");
             sc.nextLine(); // Consume invalid input
         }
-        //sc.nextLine(); // Consume newline
+        sc.nextLine(); // Consume newline
 
         return result;
     }
@@ -124,7 +122,7 @@ public class Pizzabar {
             System.out.println("Invalid input. Press number between " + min + " and " + max + ".");
             sc.nextLine(); // Consume invalid input
         }
-        //sc.nextLine(); // Consume newline
+        sc.nextLine(); // Consume newline
 
         return result;
     }
@@ -184,10 +182,17 @@ public class Pizzabar {
 
     public void showHistory(){
         System.out.println("ORDER HISTORY: \n"+ orderHistory);
-        int choice = getIntInRange(1,2);
+        System.out.println("""
+                1. Show turnover
+                2. Show popularity of pizzas(hopefully)
+                """);
+        int choice = getIntInRange(1,3);
         switch (choice){
             case 1 -> System.out.println(orderHistory.getTurnover() + " kr");
-            //case 2 ->
+            case 2 -> {
+                orderHistory.statistic(menuCard);
+                System.out.println(menuCard);
+            }
             default -> System.out.println("Not a valid input");
         }
     }

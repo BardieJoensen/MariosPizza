@@ -63,9 +63,11 @@ public class Orderlist {
             for(int j= 0; i<orders.size(); j++){
                 Order order = orders.get(j);
                 for(int k = 0; k<order.getOrderlines().size(); k++) {
-                    if()
-                    amount = order.getOrderlines().get(k).getAmount();
-                    pizza.setPopularity(amount);
+                    Orderline orderline = order.getOrderlines().get(k);
+                    if(orderline.getPizza() == pizza){
+                        amount = orderline.getAmount();
+                        pizza.setPopularity(amount);
+                    }
                 }
             }
         }

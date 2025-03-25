@@ -75,8 +75,8 @@ public class MenuCard {
         int id = 1;
         String str = "";
 
-        for (Pizza i : pizzas) {
-            str = str + id + ". " + i + "\n";
+        for (Pizza pizza : pizzas) {
+            str = str + id + ". " + pizza + "\n";
             id++;
         }
 

@@ -54,6 +54,10 @@ public class Order {
 
 
     public double getTotal() {
+        total = 0; //resetter total så vi ikke lægger mere til totallet ved en fejl
+        for (Orderline item : orderlines) {
+            total += item.getTotal();
+        }
         return total;
     }
 
@@ -62,10 +66,7 @@ public class Order {
     }
 
     public void calculateTotal() {
-        total = 0; //resetter total så vi ikke lægger mere til totallet ved en fejl
-        for (Orderline item : orderlines) {
-            total += item.getPrice();
-        }
+
     }
 
     public void addOrderline(Orderline ol) {
