@@ -18,11 +18,11 @@ public class Orderlist {
     }
 
     public void removeOrder() {
-        orders.remove(0); //fjerner sidste element
+        orders.remove(0); //removes first element
     }
 
-    public void removeOrder(Order order) {
-        orders.remove(order);
+    public Order removeOrder(int index) {
+        return orders.remove(index-1);
     }
 
     public String printNextOrder(){

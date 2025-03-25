@@ -1,24 +1,31 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Pizzabar {
+    Random random = new Random();
     Scanner sc = new Scanner(System.in);
     MenuCard menuCard = new MenuCard();
     Orderlist orderlist = new Orderlist();
+    Orderlist orderHistory = new Orderlist();
 
     public void runProgram() {
-
+        addTestOrders(orderlist, 5);
         mainMenu();
     }
 
     public void mainMenu() {
 
-        if (!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
-        System.out.println(orderlist);
-
         while (true) {
+            if (!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
+            System.out.println(orderlist);
+
             System.out.println("""
                 1. Show menu card/edit prices
                 2. Take Order
+                3. Remove Order
+                
+                5. Exit program
                 """);
 
             System.out.println("Enter number:");
@@ -29,6 +36,7 @@ public class Pizzabar {
                 switch (menuActionInputToken) {
                     case 1 -> System.out.println(menuCard);
                     case 2 -> takeOrder();
+                    case 3 -> removeOrders();
                     case 5 -> {
                         System.out.println("Exiting program - Good Bye!");
                         return;
@@ -113,7 +121,7 @@ public class Pizzabar {
             System.out.println("Invalid input. Press number between " + min + " and " + max + ".");
             sc.nextLine(); // Consume invalid input
         }
-        sc.nextLine(); // Consume newline
+        //sc.nextLine(); // Consume newline
 
         return result;
     }
@@ -146,4 +154,50 @@ public class Pizzabar {
         return result;
     }
 
+    public void removeOrders(){
+        int token = 0;
+        System.out.println("""
+                What would you like to remove?
+                1. First order in line.
+                2. Specific order.
+                """);
+
+        try{
+            token = sc.nextInt();
+
+            switch (token){
+                case 1 -> orderlist.removeOrder();
+                case 2 -> {
+                    System.out.println("Which order number would you like to remove? Use integers.");
+                    int index = getIntInRange(1, orderlist.getOrders().size());
+                    orderlist.removeOrder(index);
+                }
+                default -> System.out.println("Invalid input, redo removal selection.");
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input redo removal selection.");
+        }
+    }
+
+    public void addTestOrders(Orderlist list, int orderAmount){
+        for(int i = 0; i<orderAmount; i++) {
+            Order order = new Order();
+
+            int lines = random.nextInt(3)+1;
+
+            for(int j = 0; j<lines; j++) {
+                int choice = random.nextInt(30)+1;
+                int amount = random.nextInt(10)+1;
+                order.addOrderline(new Orderline(menuCard.getPizzas().get(choice - 1), amount));
+            }
+
+            int time = random.nextInt(2359);
+
+            while(!isValidTime(time)){
+                time = random.nextInt(2359);
+            }
+            order.setTimeOfPickup(time);
+            list.addOrder(order);
+        }
+    }
 }
