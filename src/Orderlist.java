@@ -51,7 +51,7 @@ public class Orderlist {
         int i = 1;
         for (Order item : orders) {
             result = result + i + ". " + String.format("#%03d",item.getOrderId()) +
-                    " Pick-up: " + item.getTimeOfPickup() + ", Pizzas: " + item.getAmount() + "\n";
+                    " Pick-up: " + String.format("%04d",item.getTimeOfPickup()) + ", Pizzas: " + item.getAmount() + "\n";
             i++;
         }
         return result;

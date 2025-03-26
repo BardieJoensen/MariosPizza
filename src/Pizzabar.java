@@ -22,7 +22,7 @@ public class Pizzabar {
             System.out.println("ACTIVE ORDERs: \n" + orderlist);
 
             System.out.println("""
-                1. Show menu card/edit prices
+                1. Show menu/edit prices
                 2. Take Order
                 3. Remove Order
                 4. Show order history
@@ -35,7 +35,7 @@ public class Pizzabar {
                 int menuActionInputToken =  sc.nextInt();
                 sc.nextLine();
                 switch (menuActionInputToken) {
-                    case 1 -> System.out.println(menuCard);
+                    case 1 -> menuCardOptions();
                     case 2 -> takeOrder();
                     case 3 -> removeOrders();
                     case 4 -> showHistory();
@@ -51,6 +51,51 @@ public class Pizzabar {
             }
         }
     }
+
+    public void menuCardOptions(){
+        while(true){
+            System.out.println(menuCard);
+
+            System.out.println("""
+                    1. Edit price of pizza
+                    2. Back to main menu
+                    """);
+
+            int choice = getIntInRange(1,2);
+
+            switch (choice) {
+                case 1 -> editPrice();
+                case 2 -> {return;}
+                default -> System.out.println("Invalid input...");
+            }
+        }
+    }
+
+    public void editPrice() {
+        System.out.println("Which pizza would you like to edit (enter number: 1-30)");
+        int choice = getIntInRange(1, 30);
+
+        Pizza pizza = menuCard.getPizzas().get(choice - 1);
+        System.out.println("Editing: " + pizza);
+        System.out.println("Enter new price:");
+
+        double newPrice = 0;
+        boolean validInput = false;
+        while (!validInput){
+            try {
+                newPrice = sc.nextDouble();
+                sc.nextLine();
+                validInput = true;
+            } catch (InputMismatchException error) {
+                System.out.println("Invalid input!... Input valid price:");
+                sc.nextLine();
+            }
+        }
+        pizza.setPrice(newPrice);
+        System.out.println("New price: " + pizza);
+        System.out.println();
+    }
+
 
     public void takeOrder() {
         boolean finished = false;
@@ -149,7 +194,8 @@ public class Pizzabar {
             for(int j = 0; j<lines; j++) {
                 int pizzaType = random.nextInt(30);
                 int amount = random.nextInt(10)+1;
-                order.addOrderline(new Orderline(menuCard.getPizzas().get(pizzaType), amount));
+                Orderline orderline = new Orderline(menuCard.getPizzas().get(pizzaType), amount);
+                order.addOrderline(orderline);
             }
 
             int time = random.nextInt(2359);
@@ -157,6 +203,7 @@ public class Pizzabar {
             while(!isValidTime(time)){
                 time = random.nextInt(2359);
             }
+
             order.setTimeOfPickup(time);
             list.addOrder(order);
         }
@@ -199,7 +246,7 @@ public class Pizzabar {
     }
 
     public boolean isValidTime(int time) {
-        String pickupTime = Integer.toString(time);
+        String pickupTime = String.format("%04d",time);
         if (pickupTime.length() != 4) {
             return false;
         } else if (time < 0 || time > 2359) { //
