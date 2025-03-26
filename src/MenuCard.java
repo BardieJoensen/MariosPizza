@@ -84,6 +84,7 @@ public class MenuCard {
         System.out.println("POPULARITY OF PIZZAS:");
 
         ArrayList<Pizza> popularPizzas = new ArrayList<>();
+
         for (Pizza pizza : pizzas) {
             if (pizza.getPopularity() > 0) {
                 popularPizzas.add(pizza);

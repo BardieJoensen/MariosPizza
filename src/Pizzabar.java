@@ -68,7 +68,6 @@ public class Pizzabar {
 
             System.out.println("Enter amount:");
             int amount = getPositiveInt();
-            sc.nextLine();
 
             Orderline orderline = new Orderline(pizza, amount);
             order.addOrderline(orderline);
@@ -99,6 +98,7 @@ public class Pizzabar {
         try{
             Order order = null;
             int token = sc.nextInt();
+            sc.nextLine();
             switch (token){
                 case 1 -> order = orderlist.removeOrder();
                 case 2 -> {
@@ -111,7 +111,7 @@ public class Pizzabar {
             orderHistory.addOrder(order);
             orderHistory.statistic(menuCard,order);
 
-        }catch (InputMismatchException e){
+        }catch (InputMismatchException error){
             System.out.println("Invalid input redo removal selection.");
         }
 
@@ -147,9 +147,9 @@ public class Pizzabar {
             int lines = random.nextInt(3)+1;
 
             for(int j = 0; j<lines; j++) {
-                int choice = random.nextInt(30)+1;
+                int pizzaType = random.nextInt(30);
                 int amount = random.nextInt(10)+1;
-                order.addOrderline(new Orderline(menuCard.getPizzas().get(choice - 1), amount));
+                order.addOrderline(new Orderline(menuCard.getPizzas().get(pizzaType), amount));
             }
 
             int time = random.nextInt(2359);

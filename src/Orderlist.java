@@ -9,8 +9,10 @@ public class Orderlist {
     }
 
     public void addOrder(Order order) {
-        if(order!=null) orders.add(order);
-        sortPizza();
+        if(order!=null){
+            orders.add(order);
+            sortPizza();
+        }
     }
 
     public void sortPizza() {
@@ -70,7 +72,7 @@ public class Orderlist {
 //                    orderline = order.getOrderlines().get(k);
 //                    if(orderline.getPizza() == pizza){
 //                        amount = orderline.getAmount();
-//                        pizza.setPopularity(amount);
+//                        pizza.increasePopularity(amount);
 //                    }
 //                }
 //            }
@@ -89,7 +91,7 @@ public class Orderlist {
                 orderline = order.getOrderlines().get(k);
                 if(orderline.getPizza() == pizza){
                     amount = orderline.getAmount();
-                    pizza.setPopularity(amount);
+                    pizza.increasePopularity(amount);
                 }
             }
         }

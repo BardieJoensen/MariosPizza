@@ -25,7 +25,7 @@ public class Pizza {
         return popularity;
     }
 
-    public void setPopularity(int amount){
+    public void increasePopularity(int amount){
         popularity += amount;
     }
 

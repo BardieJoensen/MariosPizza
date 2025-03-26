@@ -1,5 +1,5 @@
 public class Orderline {
-    //TODO: Vis aktive ordre og afhentningstidpunkts
+
     private int amount;
     private Pizza pizza;
     private double total;
