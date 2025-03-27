@@ -66,6 +66,7 @@ public class MenuCard {
         return pizzas;
     }
 
+    @Override
     public String toString() {
         System.out.println("MENU CARD:");
 
@@ -100,5 +101,23 @@ public class MenuCard {
 
         }
         System.out.println();
+    }
+
+    public void statistic(Order order){
+        if(order==null) return;
+        int amount;
+        Pizza pizza;
+        Orderline orderline;
+
+        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
+            pizza = pizzas.get(i);
+            for(int j = 0; j < order.getOrderlines().size(); j++) { //iterate through orderlines in order
+                orderline = order.getOrderlines().get(j);
+                if(orderline.getPizza() == pizza){
+                    amount = orderline.getAmount();
+                    pizza.increasePopularity(amount);
+                }
+            }
+        }
     }
 }

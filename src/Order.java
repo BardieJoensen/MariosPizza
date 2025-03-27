@@ -4,12 +4,10 @@ public class Order {
     //TODO: Opret ordre og afhentningstidspunkt
     private static int orderCount = 1;
 
-    private int orderId;
-    private ArrayList<Orderline> orderlines;
-    private int timeOfPickup; //Collections.sort(timeOfPickup) //Military time babyyyyyyyyyyyy <3
+    private final int orderId;
+    private final ArrayList<Orderline> orderlines;
+    private int timeOfPickup; //Military time
     private double total;
-    private Customer customer;
-
 
     public Order() {
         this.orderlines = new ArrayList<>();

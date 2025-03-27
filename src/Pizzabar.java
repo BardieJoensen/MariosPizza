@@ -10,8 +10,7 @@ public class Pizzabar {
     Orderlist orderHistory = new Orderlist();
 
     public void runProgram() {
-        addTestOrders(orderlist, 10);
-        //addTestOrders(orderHistory, 5);
+        addTestOrders(orderlist, 10); // pu
         mainMenu();
     }
 
@@ -96,15 +95,12 @@ public class Pizzabar {
         System.out.println();
     }
 
-
     public void takeOrder() {
-        boolean finished = false;
+        System.out.println(menuCard);
 
         Order order = new Order();
 
-        System.out.println(menuCard);
-
-
+        boolean finished = false;
         while (!finished) {
             System.out.println("Pick Pizza (enter number)");
             int choice = getIntInRange(1, menuCard.getPizzas().size());
@@ -122,12 +118,10 @@ public class Pizzabar {
             if (strChoice.equalsIgnoreCase("n")) finished = true;
         }
 
-
         System.out.println("Enter time of pick-up: [ttmm]");
-
         int time = getValidTime();
-        order.setTimeOfPickup(time);
 
+        order.setTimeOfPickup(time);
 
         orderlist.addOrder(order);
     }
@@ -138,7 +132,6 @@ public class Pizzabar {
                 1. First order in line.
                 2. Specific order.
                 """);
-
 
         try{
             Order order = null;
@@ -154,13 +147,12 @@ public class Pizzabar {
                 default -> System.out.println("Invalid input, redo removal selection.");
             }
             orderHistory.addOrder(order);
-            orderHistory.statistic(menuCard,order);
+
+            menuCard.statistic(order);
 
         }catch (InputMismatchException error){
             System.out.println("Invalid input redo removal selection.");
         }
-
-
     }
 
     public void showHistory() {

@@ -1,5 +1,4 @@
 public class Orderline {
-
     private int amount;
     private Pizza pizza;
     private double total;

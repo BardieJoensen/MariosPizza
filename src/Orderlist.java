@@ -78,22 +78,4 @@ public class Orderlist {
 //            }
 //        }
 //    }
-
-    public void statistic(MenuCard menuCard, Order order){
-        ArrayList<Pizza> pizzas = menuCard.getPizzas();
-        int amount;
-        Pizza pizza;
-        Orderline orderline;
-
-        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
-            pizza = pizzas.get(i);
-            for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through orderlines in order
-                orderline = order.getOrderlines().get(k);
-                if(orderline.getPizza() == pizza){
-                    amount = orderline.getAmount();
-                    pizza.increasePopularity(amount);
-                }
-            }
-        }
-    }
 }
