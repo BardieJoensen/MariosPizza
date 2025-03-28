@@ -26,7 +26,7 @@ public class Order {
     }
 
     public double getTotal() {
-        total = 0; //resetter total så vi ikke lægger mere til totallet ved en fejl
+        total = 0; //reset total before addition, to prevent adding same multiple times
         for (OrderLine item : orderLines) {
             total += item.getTotal();
         }
