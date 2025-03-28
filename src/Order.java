@@ -5,12 +5,12 @@ public class Order {
     private static int orderCount = 1;
 
     private final int orderId;
-    private final ArrayList<Orderline> orderlines;
+    private final ArrayList<OrderLine> orderLines;
     private int timeOfPickup; //Military time
     private double total;
 
     public Order() {
-        this.orderlines = new ArrayList<>();
+        this.orderLines = new ArrayList<>();
         this.timeOfPickup = 0;
         this.total = 0;
         this.orderId = orderCount;
@@ -27,7 +27,7 @@ public class Order {
 
     public double getTotal() {
         total = 0; //resetter total så vi ikke lægger mere til totallet ved en fejl
-        for (Orderline item : orderlines) {
+        for (OrderLine item : orderLines) {
             total += item.getTotal();
         }
         return total;
@@ -37,17 +37,17 @@ public class Order {
         return orderId;
     }
 
-    public void addOrderline(Orderline ol) {
-        orderlines.add(ol);
+    public void addOrderLine(OrderLine ol) {
+        orderLines.add(ol);
     }
 
-    public ArrayList<Orderline> getOrderlines(){
-        return orderlines;
+    public ArrayList<OrderLine> getOrderLines(){
+        return orderLines;
     }
 
     public int getAmount(){
         int amount = 0;
-        for (Orderline orderline : orderlines){
+        for (OrderLine orderline : orderLines){
             amount += orderline.getAmount();
         }
         return amount;
@@ -57,7 +57,7 @@ public class Order {
     public String toString() {
         String result = "";
 
-        for (Orderline item : orderlines) {
+        for (OrderLine item : orderLines) {
             result += item + "\n";
         }
         return result;

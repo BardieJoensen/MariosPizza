@@ -6,19 +6,19 @@ public class Pizzabar {
     Random random = new Random();
     Scanner sc = new Scanner(System.in);
     MenuCard menuCard = new MenuCard();
-    Orderlist orderlist = new Orderlist();
-    Orderlist orderHistory = new Orderlist();
+    OrderList orderList = new OrderList();
+    OrderList orderHistory = new OrderList();
 
     public void runProgram() {
-        addTestOrders(orderlist, 10); // pu
+        addTestOrders(orderList, 10); // populate order list with random orders
         mainMenu();
     }
 
     public void mainMenu() {
 
         while (true) {
-            if (!orderlist.getOrders().isEmpty()) System.out.println(orderlist.printNextOrder());
-            System.out.println("ACTIVE ORDERs: \n" + orderlist);
+            if (!orderList.getOrders().isEmpty()) System.out.println(orderList.printNextOrder());
+            System.out.println("ACTIVE ORDERs: \n" + orderList);
 
             System.out.println("""
                 1. Show menu/edit prices
@@ -110,8 +110,8 @@ public class Pizzabar {
             System.out.println("Enter amount:");
             int amount = getPositiveInt();
 
-            Orderline orderline = new Orderline(pizza, amount);
-            order.addOrderline(orderline);
+            OrderLine orderline = new OrderLine(pizza, amount);
+            order.addOrderLine(orderline);
 
             System.out.println("add more? [y/n]");
             String strChoice = sc.nextLine();
@@ -123,7 +123,7 @@ public class Pizzabar {
 
         order.setTimeOfPickup(time);
 
-        orderlist.addOrder(order);
+        orderList.addOrder(order);
     }
 
     public void removeOrders(){
@@ -138,11 +138,11 @@ public class Pizzabar {
             int token = sc.nextInt();
             sc.nextLine();
             switch (token){
-                case 1 -> order = orderlist.removeOrder();
+                case 1 -> order = orderList.removeOrder();
                 case 2 -> {
                     System.out.println("Which order number would you like to remove? Use integers.");
-                    int index = getIntInRange(1, orderlist.getOrders().size());
-                    order = orderlist.removeOrder(index);
+                    int index = getIntInRange(1, orderList.getOrders().size());
+                    order = orderList.removeOrder(index);
                 }
                 default -> System.out.println("Invalid input, redo removal selection.");
             }
@@ -177,7 +177,7 @@ public class Pizzabar {
         }
     }
 
-    public void addTestOrders(Orderlist list, int orderAmount){
+    public void addTestOrders(OrderList list, int orderAmount){
         for(int i = 0; i<orderAmount; i++) {
             Order order = new Order();
 
@@ -186,8 +186,8 @@ public class Pizzabar {
             for(int j = 0; j<lines; j++) {
                 int pizzaType = random.nextInt(30);
                 int amount = random.nextInt(10)+1;
-                Orderline orderline = new Orderline(menuCard.getPizzas().get(pizzaType), amount);
-                order.addOrderline(orderline);
+                OrderLine orderline = new OrderLine(menuCard.getPizzas().get(pizzaType), amount);
+                order.addOrderLine(orderline);
             }
 
             int time = random.nextInt(2359);

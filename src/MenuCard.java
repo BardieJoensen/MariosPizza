@@ -107,12 +107,12 @@ public class MenuCard {
         if(order==null) return;
         int amount;
         Pizza pizza;
-        Orderline orderline;
+        OrderLine orderline;
 
-        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
+        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menu card
             pizza = pizzas.get(i);
-            for(int j = 0; j < order.getOrderlines().size(); j++) { //iterate through orderlines in order
-                orderline = order.getOrderlines().get(j);
+            for(int j = 0; j < order.getOrderLines().size(); j++) { //iterate through order lines in order
+                orderline = order.getOrderLines().get(j);
                 if(orderline.getPizza() == pizza){
                     amount = orderline.getAmount();
                     pizza.increasePopularity(amount);

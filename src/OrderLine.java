@@ -1,9 +1,9 @@
-public class Orderline {
-    private int amount;
-    private Pizza pizza;
-    private double total;
+public class OrderLine {
+    private final int amount;
+    private final Pizza pizza;
+    private final double total;
 
-    public Orderline(Pizza pizza, int amount) {
+    public OrderLine(Pizza pizza, int amount) {
         this.pizza = pizza;
         this.amount = amount;
         this.total = pizza.getPrice() * this.amount;

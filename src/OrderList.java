@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Orderlist {
-    private ArrayList<Order> orders;
+public class OrderList {
+    private final ArrayList<Order> orders;
 
-    public Orderlist() {
+    public OrderList() {
         this.orders = new ArrayList<>();
     }
 
@@ -62,16 +62,16 @@ public class Orderlist {
 //        int amount;
 //        Pizza pizza;
 //        Order order;
-//        Orderline orderline;
+//        OrderLine orderLine;
 //
-//        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menucard
+//        for(int i = 0; i<pizzas.size(); i++){ //iterate through pizzas in menu card
 //            pizza = pizzas.get(i);
-//            for(int j= 0; j<orders.size(); j++){ //iterate through orders in orderlist
+//            for(int j= 0; j<orders.size(); j++){ //iterate through orders in orderList
 //                order = orders.get(j);
-//                for(int k = 0; k<order.getOrderlines().size(); k++) { //iterate through orderlines in order
-//                    orderline = order.getOrderlines().get(k);
-//                    if(orderline.getPizza() == pizza){
-//                        amount = orderline.getAmount();
+//                for(int k = 0; k<order.getOrderLines().size(); k++) { //iterate through orderLines in order
+//                    orderLine = order.getOrderLines().get(k);
+//                    if(orderLine.getPizza() == pizza){
+//                        amount = orderLine.getAmount();
 //                        pizza.increasePopularity(amount);
 //                    }
 //                }
