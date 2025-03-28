@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
@@ -101,12 +102,16 @@ public class Pizzabar {
 
         Order order = new Order();
 
+        // Handles order logging
+        ArrayList<Pizza> pizzasOnMenu = menuCard.getPizzas();
+        int pizzasMenuItemCount = pizzasOnMenu.size();
+
         boolean finished = false;
         while (!finished) {
             System.out.println("Pick Pizza (enter number)");
-            int choice = getIntInRange(1, menuCard.getPizzas().size());
+            int choice = getIntInRange(1, pizzasMenuItemCount);
 
-            Pizza pizza = menuCard.getPizzas().get(choice - 1);
+            Pizza pizza = pizzasOnMenu.get(choice - 1);
 
             System.out.println("Enter amount:");
             int amount = getPositiveInt();
