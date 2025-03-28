@@ -46,6 +46,7 @@ public class Pizzabar {
                 }
             } catch (InputMismatchException error) {
                 System.out.println("Something went very wrong");
+                System.out.println();
                 sc.nextLine();
             }
         }
@@ -144,7 +145,10 @@ public class Pizzabar {
                     int index = getIntInRange(1, orderList.getOrders().size());
                     order = orderList.removeOrder(index);
                 }
-                default -> System.out.println("Invalid input, redo removal selection.");
+                default ->{
+                    System.out.println("Invalid input, redo removal selection.");
+                    removeOrders();
+                }
             }
             orderHistory.addOrder(order);
 
@@ -152,6 +156,8 @@ public class Pizzabar {
 
         }catch (InputMismatchException error){
             System.out.println("Invalid input redo removal selection.");
+            sc.nextLine();
+            removeOrders();
         }
     }
 
